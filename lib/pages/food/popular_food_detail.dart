@@ -5,6 +5,7 @@ import 'package:food_delivery/utils/dimensions.dart';
 import 'package:food_delivery/widgets/app_column.dart';
 import 'package:food_delivery/widgets/app_icon.dart';
 import 'package:food_delivery/widgets/big_text.dart';
+import 'package:food_delivery/widgets/expandable_text_widget.dart';
 import 'package:food_delivery/widgets/icon_and_text_widget.dart';
 import 'package:food_delivery/widgets/small_text.dart';
 
@@ -17,6 +18,7 @@ class PopularFoodDeatail extends StatelessWidget {
       backgroundColor: Colors.white,
       body: Stack(
         children: [
+          //background image
           Positioned(
             left: 0,
             right: 0,
@@ -31,6 +33,7 @@ class PopularFoodDeatail extends StatelessWidget {
               ),
             ),
           ),
+          //icon widget
           Positioned(
             top: Dimensions.height45,
             left: Dimensions.width20,
@@ -47,6 +50,7 @@ class PopularFoodDeatail extends StatelessWidget {
               ],
             ),
           ),
+          //intro of food
           Positioned(
             left: 0,
             right: 0,
@@ -71,12 +75,19 @@ class PopularFoodDeatail extends StatelessWidget {
                   SizedBox(
                     height: Dimensions.height20,
                   ),
-                  BigText(text: "Introduce")
+                  BigText(text: "Introduce"),
+                  SizedBox(
+                    height: Dimensions.height20,
+                  ),
+                  //expandable text widget
+                  Expanded(child: SingleChildScrollView(child: ExpandableTextWidget(text: "Chinese cuisine is an important part of Chinese culture and includes cuisines originating from China. Because of the Chinese diaspora and historical power of the country, Chinese cuisine has influenced many other cuisines in Asia and beyond, with modifications made to cater to local palates. Chinese food staples such as rice, soy sauce, noodles, tea, chili oil, and tofu, and utensils such as chopsticks and the wok, can now be found worldwide. Chinese cuisine is an important part of Chinese culture and includes cuisines originating from China. Because of the Chinese diaspora and historical power of the country, Chinese cuisine has influenced many other cuisines in Asia and beyond, with modifications made to cater to local palates. Chinese food staples such as rice, soy sauce, noodles, tea, chili oil, and tofu, and utensils such as chopsticks and the wok, can now be found worldwide. Chinese cuisine is an important part of Chinese culture and includes cuisines originating from China. Because of the Chinese diaspora and historical power of the country, Chinese cuisine has influenced many other cuisines in Asia and beyond, with modifications made to cater to local palates. Chinese food staples such as rice, soy sauce, noodles, tea, chili oil, and tofu, and utensils such as chopsticks and the wok, can now be found worldwide."))),
+                
                 ],
               ),
               
             ),
           )
+          
         ],
       ),
       bottomNavigationBar: Container(
