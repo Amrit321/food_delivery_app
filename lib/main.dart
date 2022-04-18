@@ -5,6 +5,7 @@ import 'package:food_delivery/pages/food/recommended_food_detail.dart';
 
 import 'package:get/get.dart';
 
+import 'pages/home/food_page_body.dart';
 import 'pages/home/main_food_page.dart';
 import 'helper/dependencies.dart' as dep;
 
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
         
        
       ),
-      home: const RecommendedFoodDetail(),
+      home: const MainFoodPage(),
     );
   }
 }
