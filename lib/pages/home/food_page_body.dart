@@ -48,14 +48,16 @@ class _FoodPageBodyState extends State<FoodPageBody> {
         // slider section
         GetBuilder<PopularProductController>(
           builder: (popularProducts) {
-            return Container(
+            return popularProducts.isLoaded?Container(
               height: Dimensions.pageView,
               child: PageView.builder(
                   controller: pageController,
                   itemCount: popularProducts.popularProductList.length,
                   itemBuilder: (context, position) {
-                    return _buildPageItem(position, popularProducts.popularProductList[position]);
+                    return _buildPageItem(position,popularProducts.popularProductList[position]);
                   }),
+            ):CircularProgressIndicator(
+              color: Colors.white,
             );
           }
         ),
@@ -84,7 +86,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              BigText(text: "Popular"),
+              BigText(text: "Recommended"),
               SizedBox(
                 width: Dimensions.width10,
               ),
@@ -189,7 +191,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
     );
   }
 
-  Widget _buildPageItem(int index,ProductModel popularProduct) {
+  Widget _buildPageItem(int index, ProductModel popularProduct) {
     Matrix4 matrix = new Matrix4.identity();
     if (index == _currPageValue.floor()) {
       var currScale = 1 - (_currPageValue - index) * (1 - _scaleFactor);
@@ -259,7 +261,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                     top: Dimensions.height15,
                     left: Dimensions.height15,
                     right: Dimensions.height15),
-                child: AppColumn(text: "Chinese Side",),
+                child: AppColumn(text: popularProduct.name!,),
               ),
             ),
           ),
