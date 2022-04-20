@@ -3,6 +3,7 @@ import 'package:food_delivery/controllers/popular_product_controller.dart';
 import 'package:food_delivery/controllers/recommended_product_controller.dart';
 import 'package:food_delivery/pages/food/popular_food_detail.dart';
 import 'package:food_delivery/pages/food/recommended_food_detail.dart';
+import 'package:food_delivery/routes/route_helper.dart';
 
 import 'package:get/get.dart';
 
@@ -28,11 +29,10 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
 
-       
-      ),
       home: const MainFoodPage(),
+      initialRoute:RouteHelper.initial,
+      getPages: RouteHelper.routes,
     );
   }
 }
