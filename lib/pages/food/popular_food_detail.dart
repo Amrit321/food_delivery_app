@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery/controllers/cart_controller.dart';
@@ -14,8 +13,6 @@ import 'package:food_delivery/widgets/expandable_text_widget.dart';
 import 'package:food_delivery/widgets/icon_and_text_widget.dart';
 import 'package:food_delivery/widgets/small_text.dart';
 import 'package:get/get.dart';
-import 'package:get/get_instance/get_instance.dart';
-import 'package:get/route_manager.dart';
 
 class PopularFoodDeatail extends StatelessWidget {
   final int pageId;
@@ -152,8 +149,13 @@ class PopularFoodDeatail extends StatelessWidget {
               Container(
                 padding: EdgeInsets.only(top: Dimensions.height20, bottom: Dimensions.height20, left: Dimensions.width20, right: Dimensions.width20),
 
-                child: BigText(text: "\$ ${product.price!} | Add to cart",
-                  color: Colors.white,
+                child: GestureDetector(
+                  onTap: (){
+                    popularProduct.addItem(product);
+                  },
+                  child: BigText(text: "\$ ${product.price!} | Add to cart",
+                    color: Colors.white,
+                  ),
                 ),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(
