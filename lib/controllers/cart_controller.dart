@@ -51,4 +51,12 @@ class CartController extends GetxController{
     
 
   }
-}
+
+  bool existInCart(ProductModel product){
+    if(_items.containsKey(product.id)) {
+      return true;
+    }
+    return false;
+    }
+    
+  }
