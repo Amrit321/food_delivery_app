@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery/controllers/cart_controller.dart';
 import 'package:food_delivery/controllers/popular_product_controller.dart';
+import 'package:food_delivery/pages/cart/cart_page.dart';
 import 'package:food_delivery/pages/home/main_food_page.dart';
 import 'package:food_delivery/utils/app_constants.dart';
 import 'package:food_delivery/utils/colors.dart';
@@ -60,9 +61,41 @@ class PopularFoodDeatail extends StatelessWidget {
                     icon: Icons.arrow_back_ios,
                   ),
                 ),
-                AppIcon(
-                  icon: Icons.shopping_cart_outlined,
-                ),
+               GetBuilder<PopularProductController>(builder: (controller){
+                 return Stack(
+                   children: [
+                     AppIcon(
+                       icon: Icons.shopping_cart_outlined,
+                     ),
+                     Get.find<PopularProductController>().totalItems>=1?
+                     Positioned(
+                       right:0, top: 0,
+                       child: GestureDetector(
+                         onTap: (){
+                           Get.to(()=>CartPage());
+
+                 },
+                         child: AppIcon(
+                 icon: Icons.circle, size: 20, iconColor: Colors.transparent,
+                           backgroundColor: AppColors.mainColor,),
+                       ),
+                     ):
+                     Container(),
+                     Get.find<PopularProductController>().totalItems>=1?
+                     Positioned(
+                       right:3, top: 3,
+                       child: BigText(text: Get.find<PopularProductController>().totalItems.toString(),
+                       size: 12, color: Colors.white,
+                       )
+
+                     ):
+                     Container()
+
+
+                   ],
+
+                 );
+               })
               ],
             ),
           ),
@@ -135,7 +168,7 @@ class PopularFoodDeatail extends StatelessWidget {
                         },
                         child: Icon(Icons.remove, color: AppColors.signColor,)),
                     SizedBox(width: Dimensions.width10/2,),
-                    BigText(text: popularProduct.quantity.toString()),
+                    BigText(text: popularProduct.inCartItems.toString()),
                     SizedBox(width: Dimensions.width10/2,),
                     GestureDetector(
                         onTap: (){
@@ -146,22 +179,24 @@ class PopularFoodDeatail extends StatelessWidget {
                   ],
                 ),
               ),
-              Container(
-                padding: EdgeInsets.only(top: Dimensions.height20, bottom: Dimensions.height20, left: Dimensions.width20, right: Dimensions.width20),
+              GestureDetector(
+                onTap: (){
+                  popularProduct.addItem(product);
+                },
+                child: Container(
+                  padding: EdgeInsets.only(top: Dimensions.height20, bottom: Dimensions.height20, left: Dimensions.width20, right: Dimensions.width20),
 
-                child: GestureDetector(
-                  onTap: (){
-                    popularProduct.addItem(product);
-                  },
-                  child: BigText(text: "\$ ${product.price!} | Add to cart",
-                    color: Colors.white,
+
+                    child: BigText(text: "\$ ${product.price!} | Add to cart",
+                      color: Colors.white,
+                    ),
+
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(
+                        Dimensions.radius20
+                    ),
+                    color: AppColors.mainColor,
                   ),
-                ),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(
-                      Dimensions.radius20
-                  ),
-                  color: AppColors.mainColor,
                 ),
               ),
             ],

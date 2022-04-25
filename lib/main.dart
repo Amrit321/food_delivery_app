@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
 
       home: const MainFoodPage(),
-      initialRoute:RouteHelper.initial,
+     initialRoute:RouteHelper.initial,
       getPages: RouteHelper.routes,
     );
   }
