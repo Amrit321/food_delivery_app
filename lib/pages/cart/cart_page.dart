@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/controllers/cart_controller.dart';
 import 'package:food_delivery/pages/home/main_food_page.dart';
+import 'package:food_delivery/routes/route_helper.dart';
 import 'package:food_delivery/utils/app_constants.dart';
 import 'package:food_delivery/utils/colors.dart';
 import 'package:food_delivery/utils/dimensions.dart';
@@ -36,8 +37,8 @@ class CartPage extends StatelessWidget {
 
                  ),
                  GestureDetector(
-                   onTap: (){
-                     Get.to(()=>MainFoodPage());
+                   onTap:(){
+                     Get.toNamed(RouteHelper.getInitial());
                    },
                    child: AppIcon(icon: Icons.home_outlined,
                      iconColor: Colors.white,
@@ -67,9 +68,10 @@ class CartPage extends StatelessWidget {
                  context: context,
                  removeTop: true,
                  child: GetBuilder<CartController>(builder: (cartController){
+                   var _cartList = cartController.getItems;
                     return ListView.builder(
 
-                        itemCount: cartController.getItems.length,
+                        itemCount: _cartList.length,
                         itemBuilder: (_,index){
                           return Container(
                             width: double.maxFinite,
@@ -125,7 +127,7 @@ class CartPage extends StatelessWidget {
                                                     },
                                                     child: Icon(Icons.remove, color: AppColors.signColor,)),
                                                 SizedBox(width: Dimensions.width10/2,),
-                                                BigText(text:"0"),// popularProduct.inCartItems.toString()),
+                                                BigText(text: _cartList[index].quantity.toString()),// popularProduct.inCartItems.toString()),
                                                 SizedBox(width: Dimensions.width10/2,),
                                                 GestureDetector(
                                                     onTap: (){
