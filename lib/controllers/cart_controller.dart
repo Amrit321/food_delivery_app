@@ -146,5 +146,9 @@ only for storage and sharedpreferences
     _items={};
     update();
   }
+
+  List<CartModel> getCartHistoryList(){
+    return cartRepo.getCartHistoryList();
+  }
     
   }
